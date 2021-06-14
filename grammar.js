@@ -88,7 +88,7 @@ module.exports = grammar({
         alias("if", $.if_token),
         $._expression,
         alias("then", $.then_token),
-        $._block,
+        optional($._block),
         repeat($.else_if_statement),
         optional($.else_statement),
         $.end_token
@@ -98,9 +98,9 @@ module.exports = grammar({
         alias("elseif", $.else_if_token),
         $._expression,
         alias("then", $.then_token),
-        $._block
+        optional($._block)
       ),
-    else_statement: ($) => seq(alias("else", $.else_token), $._block),
+    else_statement: ($) => seq(alias("else", $.else_token), optional($._block)),
 
     numeric_for_statement: ($) =>
       seq(
@@ -201,7 +201,7 @@ module.exports = grammar({
         $.left_paren,
         optional($.parameter_list),
         $.right_paren,
-        alias($._block, $.function_block),
+        alias(optional($._block), $.function_block),
         $.end_token
       ),
 

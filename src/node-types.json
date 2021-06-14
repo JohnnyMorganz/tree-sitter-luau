@@ -92,6 +92,120 @@
     "fields": {}
   },
   {
+    "type": "compound_assignment",
+    "named": true,
+    "fields": {
+      "expression": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "anonymous_function",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "ellipse",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "prefix",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "table_constructor",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
+            "named": false
+          },
+          {
+            "type": "anonymous_function",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "ellipse",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "prefix",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "table_constructor",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "do_statement",
     "named": true,
     "fields": {},
@@ -101,6 +215,10 @@
       "types": [
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
@@ -188,6 +306,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
@@ -291,6 +413,10 @@
       "types": [
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
@@ -521,6 +647,10 @@
       "types": [
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
@@ -756,6 +886,10 @@
           "named": true
         },
         {
+          "type": "compound_assignment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -836,6 +970,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
@@ -1216,6 +1354,10 @@
           "named": true
         },
         {
+          "type": "compound_assignment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -1373,6 +1515,10 @@
           "named": true
         },
         {
+          "type": "compound_assignment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -1449,6 +1595,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
@@ -1818,6 +1968,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "compound_assignment",
           "named": true
         },
         {
