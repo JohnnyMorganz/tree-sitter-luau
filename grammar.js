@@ -20,6 +20,8 @@ module.exports = grammar({
   // Tokens which can appear anywhere in the language.
   extras: ($) => [/[\r\n]/, /\s/, $.comment],
 
+  inline: ($) => [$.prefix],
+
   conflicts: ($) => [[$._expression, $.function_call]],
 
   rules: {
@@ -58,9 +60,13 @@ module.exports = grammar({
     // Statements
     variable_assignment: ($) =>
       seq(
-        field("variables", list_of($._var, ",", false)),
+        list_of(
+          field("variable", alias($._var, $.variable_declarator)),
+          ",",
+          false
+        ),
         "=",
-        field("expressions", list_of($._expression, ",", false))
+        list_of(field("expression", $._expression), ",", false)
       ),
 
     do_statement: ($) =>
@@ -151,8 +157,10 @@ module.exports = grammar({
     local_assignment: ($) =>
       seq(
         $.local_token,
-        field("names", list_of($.identifier, ",", false)),
-        optional(seq("=", list_of($._expression, ",", false)))
+        list_of(field("name", $.identifier), ",", false),
+        optional(
+          seq("=", list_of(field("expression", $._expression), ",", false))
+        )
       ),
 
     compound_assignment: ($) =>
