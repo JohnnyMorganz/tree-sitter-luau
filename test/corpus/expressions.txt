@@ -179,7 +179,7 @@ x = foo and bar or baz
   (variable_assignment
     (identifier)
     (binary_expression (identifier) (identifier)))
-  (variable_assingment
+  (variable_assignment
     (identifier)
     (binary_expression 
         (binary_expression (identifier) (identifier))
