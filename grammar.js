@@ -37,7 +37,8 @@ module.exports = grammar({
         $.generic_for_statement,
         $.function_declaration,
         $.local_function_declaration,
-        $.local_assignment
+        $.local_assignment,
+        $.compound_assignment
       ),
 
     _last_statement: ($) =>
@@ -62,26 +63,44 @@ module.exports = grammar({
         field("expressions", list_of($._expression, ",", false))
       ),
 
-    do_statement: ($) => seq("do", optional($._block), $.end_token),
+    do_statement: ($) =>
+      seq(alias("do", $.do_token), optional($._block), $.end_token),
 
     while_statement: ($) =>
-      seq("while", $._expression, "do", optional($._block), $.end_token),
+      seq(
+        alias("while", $.while_token),
+        $._expression,
+        alias("do", $.do_token),
+        optional($._block),
+        $.end_token
+      ),
 
     repeat_statement: ($) =>
-      seq("repeat", optional($._block), "until", $._expression),
+      seq(
+        alias("repeat", $.repeat_token),
+        optional($._block),
+        alias("until", $.until_token),
+        $._expression
+      ),
 
     if_statement: ($) =>
       seq(
-        "if",
+        alias("if", $.if_token),
         $._expression,
-        "then",
+        alias("then", $.then_token),
         $._block,
         repeat($.else_if_statement),
         optional($.else_statement),
         $.end_token
       ),
-    else_if_statement: ($) => seq("elseif", $._expression, "then", $._block),
-    else_statement: ($) => seq("else", $._block),
+    else_if_statement: ($) =>
+      seq(
+        alias("elseif", $.else_if_token),
+        $._expression,
+        alias("then", $.then_token),
+        $._block
+      ),
+    else_statement: ($) => seq(alias("else", $.else_token), $._block),
 
     numeric_for_statement: ($) =>
       seq(
@@ -150,11 +169,11 @@ module.exports = grammar({
     _var: ($) =>
       choice(
         $.identifier,
-        seq($.prefix_exp, "[", $._expression, "]"),
-        seq($.prefix_exp, ".", $.identifier)
+        seq($.prefix, "[", $._expression, "]"),
+        seq($.prefix, ".", $.identifier)
       ),
 
-    prefix_exp: ($) =>
+    prefix: ($) =>
       choice(
         $._var,
         prec(-1, $.function_call),
@@ -170,7 +189,7 @@ module.exports = grammar({
         $.string,
         $.ellipse,
         $.anonymous_function,
-        $.prefix_exp,
+        $.prefix,
         $.table_constructor,
         $.binary_expression,
         $.unary_expression
@@ -218,7 +237,7 @@ module.exports = grammar({
     function_call: ($) =>
       prec.dynamic(
         PREC.PRIORTIY,
-        seq($.prefix_exp, choice($._args, $._method_call))
+        seq($.prefix, choice($._args, $._method_call))
       ),
 
     _method_call: ($) => seq(":", $.identifier, $._args),

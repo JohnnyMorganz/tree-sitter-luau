@@ -1,5 +1,6 @@
 {
   "name": "luau",
+  "word": "identifier",
   "rules": {
     "program": {
       "type": "SYMBOL",
@@ -153,7 +154,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_var"
+                "name": "_variable_declarator"
               },
               {
                 "type": "REPEAT",
@@ -166,7 +167,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "_var"
+                      "name": "_variable_declarator"
                     }
                   ]
                 }
@@ -213,8 +214,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "do"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "do"
+          },
+          "named": true,
+          "value": "do_token"
         },
         {
           "type": "CHOICE",
@@ -238,16 +244,26 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "while"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "while"
+          },
+          "named": true,
+          "value": "while_token"
         },
         {
           "type": "SYMBOL",
           "name": "_expression"
         },
         {
-          "type": "STRING",
-          "value": "do"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "do"
+          },
+          "named": true,
+          "value": "do_token"
         },
         {
           "type": "CHOICE",
@@ -271,8 +287,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "repeat"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "repeat"
+          },
+          "named": true,
+          "value": "repeat_token"
         },
         {
           "type": "CHOICE",
@@ -287,8 +308,13 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "until"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "until"
+          },
+          "named": true,
+          "value": "until_token"
         },
         {
           "type": "SYMBOL",
@@ -300,16 +326,26 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "if"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "if"
+          },
+          "named": true,
+          "value": "if_token"
         },
         {
           "type": "SYMBOL",
           "name": "_expression"
         },
         {
-          "type": "STRING",
-          "value": "then"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "then"
+          },
+          "named": true,
+          "value": "then_token"
         },
         {
           "type": "SYMBOL",
@@ -344,16 +380,26 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "elseif"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "elseif"
+          },
+          "named": true,
+          "value": "else_if_token"
         },
         {
           "type": "SYMBOL",
           "name": "_expression"
         },
         {
-          "type": "STRING",
-          "value": "then"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "then"
+          },
+          "named": true,
+          "value": "then_token"
         },
         {
           "type": "SYMBOL",
@@ -365,8 +411,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "else"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "else"
+          },
+          "named": true,
+          "value": "else_token"
         },
         {
           "type": "SYMBOL",
@@ -738,7 +789,7 @@
           "name": "variable",
           "content": {
             "type": "SYMBOL",
-            "name": "_var"
+            "name": "_variable_declarator"
           }
         },
         {
@@ -817,7 +868,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "prefix_exp"
+              "name": "prefix"
             },
             {
               "type": "STRING",
@@ -838,7 +889,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "prefix_exp"
+              "name": "prefix"
             },
             {
               "type": "STRING",
@@ -852,7 +903,7 @@
         }
       ]
     },
-    "prefix_exp": {
+    "prefix": {
       "type": "CHOICE",
       "members": [
         {
@@ -886,6 +937,35 @@
         }
       ]
     },
+    "_variable_declarator": {
+      "type": "SYMBOL",
+      "name": "_var"
+    },
+    "_local_variable_declarator": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "_expression": {
       "type": "CHOICE",
       "members": [
@@ -915,7 +995,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "prefix_exp"
+          "name": "prefix"
         },
         {
           "type": "SYMBOL",
@@ -1204,7 +1284,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "prefix_exp"
+            "name": "prefix"
           },
           {
             "type": "CHOICE",
@@ -2159,6 +2239,13 @@
     }
   ],
   "conflicts": [
+    [
+      "prefix"
+    ],
+    [
+      "_expression",
+      "_variable_declarator"
+    ],
     [
       "_expression",
       "function_call"

@@ -63,7 +63,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -109,6 +109,10 @@
         },
         {
           "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "do_token",
           "named": true
         },
         {
@@ -199,6 +203,10 @@
           "named": true
         },
         {
+          "type": "else_if_token",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -235,7 +243,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -252,6 +260,10 @@
         },
         {
           "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "then_token",
           "named": true
         },
         {
@@ -287,6 +299,10 @@
         },
         {
           "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "else_token",
           "named": true
         },
         {
@@ -369,7 +385,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -425,7 +441,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -477,7 +493,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -598,7 +614,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -699,7 +715,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -863,6 +879,10 @@
           "named": true
         },
         {
+          "type": "if_token",
+          "named": true
+        },
+        {
           "type": "local_assignment",
           "named": true
         },
@@ -883,7 +903,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -900,6 +920,10 @@
         },
         {
           "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "then_token",
           "named": true
         },
         {
@@ -969,7 +993,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -1063,7 +1087,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -1109,7 +1133,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -1155,7 +1179,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -1270,7 +1294,7 @@
     }
   },
   {
-    "type": "prefix_exp",
+    "type": "prefix",
     "named": true,
     "fields": {},
     "children": {
@@ -1314,7 +1338,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -1476,11 +1500,15 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
           "type": "repeat_statement",
+          "named": true
+        },
+        {
+          "type": "repeat_token",
           "named": true
         },
         {
@@ -1497,6 +1525,10 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "until_token",
           "named": true
         },
         {
@@ -1543,7 +1575,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -1624,7 +1656,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -1679,7 +1711,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -1745,7 +1777,7 @@
             "named": true
           },
           {
-            "type": "prefix_exp",
+            "type": "prefix",
             "named": true
           },
           {
@@ -1797,6 +1829,10 @@
           "named": true
         },
         {
+          "type": "do_token",
+          "named": true
+        },
+        {
           "type": "ellipse",
           "named": true
         },
@@ -1841,7 +1877,7 @@
           "named": true
         },
         {
-          "type": "prefix_exp",
+          "type": "prefix",
           "named": true
         },
         {
@@ -1870,6 +1906,10 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "while_token",
           "named": true
         }
       ]
@@ -2004,16 +2044,20 @@
     "named": false
   },
   {
+    "type": "do_token",
+    "named": true
+  },
+  {
     "type": "ellipse",
     "named": true
   },
   {
-    "type": "else",
-    "named": false
+    "type": "else_if_token",
+    "named": true
   },
   {
-    "type": "elseif",
-    "named": false
+    "type": "else_token",
+    "named": true
   },
   {
     "type": "end_token",
@@ -2040,8 +2084,8 @@
     "named": true
   },
   {
-    "type": "if",
-    "named": false
+    "type": "if_token",
+    "named": true
   },
   {
     "type": "in",
@@ -2072,8 +2116,8 @@
     "named": false
   },
   {
-    "type": "repeat",
-    "named": false
+    "type": "repeat_token",
+    "named": true
   },
   {
     "type": "return",
@@ -2088,20 +2132,20 @@
     "named": true
   },
   {
-    "type": "then",
-    "named": false
+    "type": "then_token",
+    "named": true
   },
   {
     "type": "true",
     "named": false
   },
   {
-    "type": "until",
-    "named": false
+    "type": "until_token",
+    "named": true
   },
   {
-    "type": "while",
-    "named": false
+    "type": "while_token",
+    "named": true
   },
   {
     "type": "{",
