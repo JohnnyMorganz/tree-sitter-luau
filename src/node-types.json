@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "end_token",
+          "named": true
+        },
+        {
           "type": "function_block",
           "named": true
         },
@@ -93,7 +97,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "break_statement",
@@ -105,6 +109,14 @@
         },
         {
           "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "end_token",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -140,7 +152,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -184,6 +196,10 @@
         },
         {
           "type": "ellipse",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -243,7 +259,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -271,6 +287,10 @@
         },
         {
           "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -306,7 +326,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -425,11 +445,6 @@
     }
   },
   {
-    "type": "field_separator",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "function_arguments",
     "named": true,
     "fields": {},
@@ -501,6 +516,10 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -533,7 +552,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -598,11 +617,19 @@
       "required": true,
       "types": [
         {
+          "type": "end_token",
+          "named": true
+        },
+        {
           "type": "function_block",
           "named": true
         },
         {
           "type": "function_name",
+          "named": true
+        },
+        {
+          "type": "function_token",
           "named": true
         },
         {
@@ -706,7 +733,7 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "break_statement",
@@ -718,6 +745,14 @@
         },
         {
           "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "end_token",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -753,7 +788,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -808,6 +843,14 @@
           "named": true
         },
         {
+          "type": "end_token",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -864,7 +907,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -914,6 +957,10 @@
           "named": true
         },
         {
+          "type": "local_token",
+          "named": true
+        },
+        {
           "type": "nil",
           "named": true
         },
@@ -949,7 +996,15 @@
       "required": true,
       "types": [
         {
+          "type": "end_token",
+          "named": true
+        },
+        {
           "type": "function_block",
+          "named": true
+        },
+        {
+          "type": "function_token",
           "named": true
         },
         {
@@ -958,6 +1013,10 @@
         },
         {
           "type": "left_paren",
+          "named": true
+        },
+        {
+          "type": "local_token",
           "named": true
         },
         {
@@ -1126,7 +1185,7 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "break_statement",
@@ -1138,6 +1197,14 @@
         },
         {
           "type": "do_statement",
+          "named": true
+        },
+        {
+          "type": "end_token",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -1173,7 +1240,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -1290,6 +1357,10 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -1322,7 +1393,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -1366,6 +1437,10 @@
         },
         {
           "type": "ellipse",
+          "named": true
+        },
+        {
+          "type": "function_call",
           "named": true
         },
         {
@@ -1425,7 +1500,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -1512,10 +1587,6 @@
         {
           "type": "field",
           "named": true
-        },
-        {
-          "type": "field_separator",
-          "named": true
         }
       ]
     }
@@ -1572,7 +1643,7 @@
     }
   },
   {
-    "type": "variable_declaration",
+    "type": "variable_assignment",
     "named": true,
     "fields": {
       "expressions": {
@@ -1730,6 +1801,14 @@
           "named": true
         },
         {
+          "type": "end_token",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -1786,7 +1865,7 @@
           "named": true
         },
         {
-          "type": "variable_declaration",
+          "type": "variable_assignment",
           "named": true
         },
         {
@@ -1909,8 +1988,8 @@
     "named": false
   },
   {
-    "type": "end",
-    "named": false
+    "type": "end_token",
+    "named": true
   },
   {
     "type": "false",
@@ -1923,6 +2002,10 @@
   {
     "type": "function",
     "named": false
+  },
+  {
+    "type": "function_token",
+    "named": true
   },
   {
     "type": "identifier",
@@ -1941,8 +2024,8 @@
     "named": true
   },
   {
-    "type": "local",
-    "named": false
+    "type": "local_token",
+    "named": true
   },
   {
     "type": "nil",

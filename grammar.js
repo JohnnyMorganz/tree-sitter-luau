@@ -1,5 +1,5 @@
 const PREC = {
-  FUNCTION: 1,
+  PRIORTIY: 1,
 
   OR: 2,
   AND: 3,
@@ -18,15 +18,17 @@ module.exports = grammar({
   externals: ($) => [$._multiline_comment, $.string],
 
   // Tokens which can appear anywhere in the language.
-  extras: ($) => [/[\n]/, /\s/, $.comment],
+  extras: ($) => [/[\r\n]/, /\s/, $.comment],
+
+  conflicts: ($) => [[$._expression, $.function_call]],
 
   rules: {
     program: ($) => $._block,
 
     _statement: ($) =>
       choice(
-        $.variable_declaration,
-        // $.function_call,
+        $.variable_assignment,
+        $.function_call,
         $.do_statement,
         $.while_statement,
         $.repeat_statement,
@@ -53,16 +55,17 @@ module.exports = grammar({
     _block: ($) => $._chunk,
 
     // Statements
-    variable_declaration: ($) =>
+    variable_assignment: ($) =>
       seq(
         field("variables", list_of($._var, ",", false)),
         "=",
         field("expressions", list_of($._expression, ",", false))
       ),
-    do_statement: ($) => seq("do", optional($._block), "end"),
+
+    do_statement: ($) => seq("do", optional($._block), $.end_token),
 
     while_statement: ($) =>
-      seq("while", $._expression, "do", optional($._block), "end"),
+      seq("while", $._expression, "do", optional($._block), $.end_token),
 
     repeat_statement: ($) =>
       seq("repeat", optional($._block), "until", $._expression),
@@ -75,7 +78,7 @@ module.exports = grammar({
         $._block,
         repeat($.else_if_statement),
         optional($.else_statement),
-        "end"
+        $.end_token
       ),
     else_if_statement: ($) => seq("elseif", $._expression, "then", $._block),
     else_statement: ($) => seq("else", $._block),
@@ -91,7 +94,7 @@ module.exports = grammar({
         optional(seq(",", field("step", $._expression))),
         "do",
         optional($._block),
-        "end"
+        $.end_token
       ),
 
     generic_for_statement: ($) =>
@@ -102,24 +105,32 @@ module.exports = grammar({
         field("expressions", list_of($._expression, ",", false)),
         "do",
         optional($._block),
-        "end"
+        $.end_token
       ),
 
     function_declaration: ($) =>
-      seq("function", $.function_name, $._function_body),
+      seq(
+        alias("function", $.function_token),
+        $.function_name,
+        $._function_body
+      ),
 
     function_name: ($) =>
       seq(list_of($.identifier, ".", false), optional(seq(":", $.identifier))),
 
     local_function_declaration: ($) =>
-      seq("local", "function", $.identifier, $._function_body),
+      seq(
+        $.local_token,
+        alias("function", $.function_token),
+        $.identifier,
+        $._function_body
+      ),
 
     local_assignment: ($) =>
       seq(
-        "local",
+        $.local_token,
         field("names", list_of($.identifier, ",", false)),
-        "=",
-        list_of($._expression, ",", false)
+        optional(seq("=", list_of($._expression, ",", false)))
       ),
 
     return_statement: ($) =>
@@ -139,7 +150,7 @@ module.exports = grammar({
     prefix_exp: ($) =>
       choice(
         $._var,
-        $.function_call,
+        prec(-1, $.function_call),
         seq($.left_paren, $._expression, $.right_paren)
       ),
 
@@ -165,7 +176,7 @@ module.exports = grammar({
         optional($.parameter_list),
         $.right_paren,
         alias($._block, $.function_block),
-        "end"
+        $.end_token
       ),
 
     parameter_list: ($) =>
@@ -176,7 +187,7 @@ module.exports = grammar({
 
     // Table
     table_constructor: ($) => seq("{", optional($.table_fields), "}"),
-    table_fields: ($) => list_of($.field, $.field_separator, true),
+    table_fields: ($) => list_of($.field, $._field_separator, true),
     _named_field_expression: ($) =>
       seq(field("name", $.identifier), "=", field("value", $._expression)),
     _expression_field_expression: ($) =>
@@ -194,12 +205,12 @@ module.exports = grammar({
         $._expression_field_expression,
         field("value", $._expression)
       ),
-    field_separator: ($) => choice(",", ";"),
+    _field_separator: ($) => choice(",", ";"),
 
     // Function Call
     function_call: ($) =>
-      prec.right(
-        PREC.FUNCTION,
+      prec.dynamic(
+        PREC.PRIORTIY,
         seq($.prefix_exp, choice($._args, $._method_call))
       ),
 
@@ -248,9 +259,9 @@ module.exports = grammar({
 
     // Primitives
     number: ($) => {
-      const decimal_digits = /[0-9]+/;
+      const decimal_digits = seq(/[0-9_]+/);
       const signed_integer = seq(optional(choice("-", "+")), decimal_digits);
-      const decimal_exponent_part = seq(choice("e", "E"), signed_integer);
+      const decimal_exponent = seq(choice("e", "E"), signed_integer);
 
       const decimal_integer_literal = choice(
         "0",
@@ -262,16 +273,16 @@ module.exports = grammar({
           decimal_integer_literal,
           ".",
           optional(decimal_digits),
-          optional(decimal_exponent_part)
+          optional(decimal_exponent)
         ),
-        seq(".", decimal_digits, optional(decimal_exponent_part)),
-        seq(decimal_integer_literal, optional(decimal_exponent_part))
+        seq(".", decimal_digits, optional(decimal_exponent)),
+        seq(decimal_integer_literal, optional(decimal_exponent))
       );
 
-      const hex_digits = /[a-fA-F0-9]+/;
+      const hex_digits = /[a-fA-F0-9_]+/;
       const hex_literal = seq(choice("0x", "0X"), hex_digits);
 
-      const binary_digits = /[0-1]+/;
+      const binary_digits = /[0-1_]+/;
       const binary_literal = seq(choice("0b", "0B"), binary_digits);
 
       return token(choice(decimal_literal, hex_literal, binary_literal));
@@ -285,6 +296,9 @@ module.exports = grammar({
 
     left_paren: ($) => "(",
     right_paren: ($) => ")",
+
+    local_token: ($) => "local",
+    end_token: ($) => "end",
 
     // Comments
     comment: ($) => choice(seq("--", /.*\r?\n/), $._multiline_comment),
