@@ -4,7 +4,8 @@
   "description": "Luau grammar for tree-sitter",
   "main": "bindings/node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tree-sitter generate",
+    "test": "tree-sitter test"
   },
   "author": "JohnnyMorganz <johnnymorganz@outlook.com>",
   "license": "ISC",
