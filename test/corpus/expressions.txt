@@ -1,0 +1,186 @@
+==================
+Handles nil
+==================
+
+x = nil
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (nil)))
+
+==================
+Handles true
+==================
+
+x = true
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (boolean)))
+
+==================
+Handles false
+==================
+
+x = false
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (boolean)))
+
+==================
+Handles simple number
+==================
+
+x = 1
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Handles fractional number
+==================
+
+x = 1.50
+x = .50
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number))
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Handles signed number
+==================
+
+x = -1
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (unary_expression (number))))
+
+==================
+Handles exponential number
+==================
+
+x = 1e5
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Handles hexadecimal number
+==================
+
+x = 0xFF
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Handles binary number
+==================
+
+x = 0b101011
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Luau: Handles number with separators
+==================
+
+x = 1_048_576
+x = 0xFFFF_FFFF
+x = 0b_0101_0101
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number))
+  (variable_assignment
+    (identifier)
+    (number))
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Handles binary addition
+==================
+
+x = 1 + 1
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (binary_expression (number) (number))))
+
+==================
+Handles binary addition of variables
+==================
+
+x = x + y
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (binary_expression (identifier) (identifier))))
+
+==================
+Handles binary and/or
+==================
+
+x = foo and bar
+x = foo and bar or baz
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (binary_expression (identifier) (identifier)))
+  (variable_assingment
+    (identifier)
+    (binary_expression 
+        (binary_expression (identifier) (identifier))
+        (identifier))))

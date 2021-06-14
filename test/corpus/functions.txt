@@ -1,0 +1,92 @@
+==================
+Basic function declaration
+==================
+
+function x()
+end
+
+---
+
+(program
+  (function_declaration
+    (function_token)
+    (function_name (identifier))
+    (left_paren)
+    (right_paren))
+
+==================
+Global function declaration with parameters
+==================
+
+function x(foo, bar)
+end
+
+---
+
+(program
+  (function_declaration
+    (function_name (identifier))
+    (left_paren)
+    (right_paren))
+
+==================
+Global function declaration with body
+==================
+
+function x()
+    return true
+end
+
+---
+
+(program
+  (function_declaration
+    (function_name (identifier))
+    (left_paren)
+    (right_paren))
+
+==================
+Complex function name declaration
+==================
+
+function x.y:z()
+end
+
+---
+
+(program
+  (function_declaration
+    (function_name (identifier))
+    (left_paren)
+    (right_paren))
+
+==================
+Local function declaration
+==================
+
+local function x()
+end
+
+---
+
+(program
+  (function_declaration
+    (function_name (identifier))
+    (left_paren)
+    (right_paren))
+
+==================
+Complex local function declaration
+==================
+
+local function foo(a, b) end
+local function bar(...) end
+local function baz(a, b, ...) end
+
+---
+
+(program
+  (function_declaration
+    (function_name (identifier))
+    (left_paren)
+    (right_paren))

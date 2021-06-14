@@ -1,0 +1,102 @@
+==================
+Basic variable assignment
+==================
+
+x = 1
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (number)))
+
+==================
+Multiple variable assignment
+==================
+
+a, b = 1, true
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (identifier)
+    (number)
+    (boolean)))
+
+==================
+Complex variable assignment
+==================
+
+a, b, c.d.e[f][g][1], h:i().j[k]:l()[m] = true, false, 1, 4
+
+---
+
+(program
+  (variable_assignment
+    (identifier)
+    (identifier)
+    (prefix_exp)
+    (boolean)
+    (boolean)
+    (number)
+    (number)))
+
+==================
+Local variable declaration, no assignment
+==================
+
+local x
+
+---
+
+(program
+  (local_assignment
+    (local_token)
+    (identifier)))
+
+==================
+Local variable declaration
+==================
+
+local x = 1
+
+---
+
+(program
+  (local_assignment
+    (local_token)
+    (identifier)
+    (number)))
+
+==================
+Multiple Local variable declaration, no assignment
+==================
+
+local x, y
+
+---
+
+(program
+  (local_assignment
+    (local_token)
+    (identifier)
+    (identifier)))
+
+==================
+Multiple Local variable declaration
+==================
+
+local x, y = 1, false
+
+---
+
+(program
+  (local_assignment
+    (local_token)
+    (identifier)
+    (identifier)
+    (number)
+    (boolean)))
