@@ -184,3 +184,49 @@ x = foo and bar or baz
     (binary_expression 
         (binary_expression (identifier) (identifier))
         (identifier))))
+
+==================
+Handles simple table
+==================
+
+x = { true }
+
+---
+
+(program
+  (variable_assignment
+    (variable_declarator (identifier))
+    (table_constructor 
+      (table_fields (field (boolean))))))
+
+==================
+Handles name key tables
+==================
+
+x = { foo = bar, bar = baz }
+
+---
+
+(program
+  (variable_assignment
+    (variable_declarator (identifier))
+    (table_constructor 
+      (table_fields
+        (field (identifier) (identifier))
+        (field (identifier) (identifier))))))
+
+==================
+Handles expression key tables
+==================
+
+x = { ["foo"] = bar, [call()] = baz }
+
+---
+
+(program
+  (variable_assignment
+    (variable_declarator (identifier))
+    (table_constructor 
+      (table_fields
+        (field (string) (identifier))
+        (field (function_call (identifier) (left_paren) (right_paren)) (identifier))))))
