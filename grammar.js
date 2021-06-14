@@ -135,7 +135,10 @@ module.exports = grammar({
       ),
 
     function_name: ($) =>
-      seq(list_of($.identifier, ".", false), optional(seq(":", $.identifier))),
+      seq(
+        list_of($.identifier, alias(".", $.table_dot), false),
+        optional(seq(alias(":", $.table_colon), $.identifier))
+      ),
 
     local_function_declaration: ($) =>
       seq(

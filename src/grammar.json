@@ -667,8 +667,13 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "."
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "STRING",
+                      "value": "."
+                    },
+                    "named": true,
+                    "value": "table_dot"
                   },
                   {
                     "type": "SYMBOL",
@@ -686,8 +691,13 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": ":"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": ":"
+                  },
+                  "named": true,
+                  "value": "table_colon"
                 },
                 {
                   "type": "SYMBOL",

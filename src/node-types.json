@@ -804,6 +804,14 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "table_colon",
+          "named": true
+        },
+        {
+          "type": "table_dot",
+          "named": true
         }
       ]
     }
@@ -2283,6 +2291,14 @@
   },
   {
     "type": "string",
+    "named": true
+  },
+  {
+    "type": "table_colon",
+    "named": true
+  },
+  {
+    "type": "table_dot",
     "named": true
   },
   {
