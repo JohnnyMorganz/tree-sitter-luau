@@ -8,7 +8,7 @@ const PREC = {
   ADD: 6,
   MULTI: 7,
   UNARY: 8,
-  EXP: 9,
+  POWER: 9,
 };
 
 module.exports = grammar({
@@ -133,6 +133,13 @@ module.exports = grammar({
         optional(seq("=", list_of($._expression, ",", false)))
       ),
 
+    compound_assignment: ($) =>
+      seq(
+        field("variable", $._var),
+        $._compound_op,
+        field("expression", $._expression)
+      ),
+
     return_statement: ($) =>
       seq("return", optional(list_of($._expression, ","))),
 
@@ -248,7 +255,7 @@ module.exports = grammar({
         ),
         ...[
           ["..", PREC.CONCAT],
-          ["^", PREC.EXP],
+          ["^", PREC.POWER],
         ].map(([operator, precedence]) =>
           prec.right(precedence, seq($._expression, operator, $._expression))
         )
@@ -299,6 +306,8 @@ module.exports = grammar({
 
     local_token: ($) => "local",
     end_token: ($) => "end",
+
+    _compound_op: ($) => choice("+=", "-=", "*=", "/=", "%=", "^=", "..="),
 
     // Comments
     comment: ($) => choice(seq("--", /.*\r?\n/), $._multiline_comment),

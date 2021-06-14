@@ -100,3 +100,16 @@ local x, y = 1, false
     (identifier)
     (number)
     (boolean)))
+
+==================
+Luau: Compound assignment
+==================
+
+a += 1
+
+---
+
+(program
+  (compound_assignment
+    (identifier)
+    (number)))

@@ -730,6 +730,31 @@
         }
       ]
     },
+    "compound_assignment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_var"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_compound_op"
+        },
+        {
+          "type": "FIELD",
+          "name": "expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
+    },
     "return_statement": {
       "type": "SEQ",
       "members": [
@@ -2062,6 +2087,39 @@
     "end_token": {
       "type": "STRING",
       "value": "end"
+    },
+    "_compound_op": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "+="
+        },
+        {
+          "type": "STRING",
+          "value": "-="
+        },
+        {
+          "type": "STRING",
+          "value": "*="
+        },
+        {
+          "type": "STRING",
+          "value": "/="
+        },
+        {
+          "type": "STRING",
+          "value": "%="
+        },
+        {
+          "type": "STRING",
+          "value": "^="
+        },
+        {
+          "type": "STRING",
+          "value": "..="
+        }
+      ]
     },
     "comment": {
       "type": "CHOICE",
