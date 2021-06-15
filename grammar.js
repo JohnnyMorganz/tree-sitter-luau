@@ -77,31 +77,35 @@ module.exports = grammar({
       ),
 
     do_statement: ($) =>
-      seq(alias("do", $.do_token), optional($._block), $.end_token),
+      seq(
+        alias("do", $.do_token),
+        field("block", optional($._block)),
+        $.end_token
+      ),
 
     while_statement: ($) =>
       seq(
         alias("while", $.while_token),
-        $._expression,
+        field("condition", $._expression),
         alias("do", $.do_token),
-        optional($._block),
+        field("block", optional($._block)),
         $.end_token
       ),
 
     repeat_statement: ($) =>
       seq(
         alias("repeat", $.repeat_token),
-        optional($._block),
+        field("block", optional($._block)),
         alias("until", $.until_token),
-        $._expression
+        field("condition", $._expression)
       ),
 
     if_statement: ($) =>
       seq(
         alias("if", $.if_token),
-        $._expression,
+        field("condition", $._expression),
         alias("then", $.then_token),
-        optional($._block),
+        field("block", optional($._block)),
         repeat($.else_if_statement),
         optional($.else_statement),
         $.end_token
@@ -109,11 +113,12 @@ module.exports = grammar({
     else_if_statement: ($) =>
       seq(
         alias("elseif", $.else_if_token),
-        $._expression,
+        field("condition", $._expression),
         alias("then", $.then_token),
-        optional($._block)
+        field("block", optional($._block))
       ),
-    else_statement: ($) => seq(alias("else", $.else_token), optional($._block)),
+    else_statement: ($) =>
+      seq(alias("else", $.else_token), field("block", optional($._block))),
 
     numeric_for_statement: ($) =>
       seq(
@@ -125,7 +130,7 @@ module.exports = grammar({
         field("end", $._expression),
         optional(seq(",", field("step", $._expression))),
         "do",
-        optional($._block),
+        field("block", optional($._block)),
         $.end_token
       ),
 
@@ -165,8 +170,8 @@ module.exports = grammar({
       seq(
         $.local_token,
         alias("function", $.function_token),
-        $.identifier,
-        optional($.generics_declaration),
+        field("name", $.identifier),
+        field("generics", optional($.generics_declaration)),
         $._function_body
       ),
 
@@ -216,7 +221,10 @@ module.exports = grammar({
 
     variable_declarator: ($) => $._var,
     local_variable_declarator: ($) =>
-      seq($.identifier, optional($.type_specifier)),
+      seq(
+        field("name", $.identifier),
+        field("type_specifier", optional($.type_specifier))
+      ),
 
     // Expressions
     _expression: ($) =>
@@ -238,10 +246,10 @@ module.exports = grammar({
     _function_body: ($) =>
       seq(
         $.left_paren,
-        optional($.parameter_list),
+        field("parameters", optional($.parameter_list)),
         $.right_paren,
-        optional($.return_type_specifier),
-        alias(optional($._block), $.function_block),
+        field("return_type", optional($.return_type_specifier)),
+        field("block", alias(optional($._block), $.function_block)),
         $.end_token
       ),
 
@@ -254,11 +262,16 @@ module.exports = grammar({
         alias($._parameter_ellipse, $.parameter)
       ),
 
-    parameter: ($) => seq($.identifier, optional($.type_specifier)),
+    parameter: ($) =>
+      seq(
+        field("parameter", $.identifier),
+        field("type_specifier", optional($.type_specifier))
+      ),
     _parameter_ellipse: ($) => seq($.ellipse, optional($.type_specifier)),
 
     // Table
-    table_constructor: ($) => seq("{", optional($.table_fields), "}"),
+    table_constructor: ($) =>
+      seq("{", field("fields", optional($.table_fields)), "}"),
     table_fields: ($) => list_of($.field, $._field_separator, true),
     _named_field_expression: ($) =>
       seq(field("name", $.identifier), "=", field("value", $._expression)),
