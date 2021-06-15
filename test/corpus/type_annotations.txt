@@ -509,3 +509,18 @@ end
     (variable_declarator (identifier) (type_specifier (identifier)))
     (function_call (identifier) (left_paren) (function_arguments (identifier)) (right_paren))
     (end_token)))
+
+==================
+Type assertion 1 
+==================
+
+x = 5 + c :: number
+
+---
+
+(program
+  (variable_assignment
+    (variable_declarator (identifier))
+    (binary_expression
+      (number)
+      (type_assertion (identifier) (identifier)))))

@@ -13,6 +13,7 @@ const PREC = {
   TYPE_UNION: 2,
   TYPE_INTERSECTION: 3,
   TYPE_OPTIONAL: 4,
+  TYPE_GENERIC: 5, // Priority in comparison to less than expression checking - x :: number<Foo as the beginning of a generic type, rather than (x :: number) < Foo
   TYPE_ASSERTION: 10,
 };
 
@@ -229,8 +230,8 @@ module.exports = grammar({
         $.prefix,
         $.table_constructor,
         $.binary_expression,
-        $.unary_expression
-        // $.type_assertion
+        $.unary_expression,
+        $.type_assertion
       ),
 
     anonymous_function: ($) => seq("function", $._function_body),
@@ -421,13 +422,19 @@ module.exports = grammar({
         choice($.type_variadic, $.type_info)
       ),
     type_generic: ($) =>
-      seq($.identifier, "<", list_of($.type_info, ",", false), ">"),
+      prec.left(
+        PREC.TYPE_GENERIC,
+        seq($.identifier, "<", list_of($.type_info, ",", false), ">")
+      ),
     type_module: ($) =>
-      seq(
-        $.identifier,
-        ".",
-        $.identifier,
-        optional(seq("<", list_of($.type_info, ",", false), ">"))
+      prec.left(
+        PREC.TYPE_GENERIC,
+        seq(
+          $.identifier,
+          ".",
+          $.identifier,
+          optional(seq("<", list_of($.type_info, ",", false), ">"))
+        )
       ),
     type_parentheses: ($) => seq("(", $.type_info, ")"),
     type_table: ($) =>

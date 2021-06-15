@@ -91,6 +91,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         }
@@ -176,6 +180,10 @@
             "named": true
           },
           {
+            "type": "type_assertion",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -243,6 +251,10 @@
           },
           {
             "type": "table_constructor",
+            "named": true
+          },
+          {
+            "type": "type_assertion",
             "named": true
           },
           {
@@ -449,6 +461,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "type_declaration",
           "named": true
         },
@@ -615,6 +631,10 @@
             "named": true
           },
           {
+            "type": "type_assertion",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -695,6 +715,10 @@
             "named": true
           },
           {
+            "type": "type_assertion",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -756,6 +780,10 @@
         },
         {
           "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "type_assertion",
           "named": true
         },
         {
@@ -916,6 +944,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         }
@@ -1062,6 +1094,10 @@
           },
           {
             "type": "table_constructor",
+            "named": true
+          },
+          {
+            "type": "type_assertion",
             "named": true
           },
           {
@@ -1300,6 +1336,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "type_declaration",
           "named": true
         },
@@ -1389,6 +1429,10 @@
           },
           {
             "type": "table_constructor",
+            "named": true
+          },
+          {
+            "type": "type_assertion",
             "named": true
           },
           {
@@ -1539,6 +1583,10 @@
             "named": true
           },
           {
+            "type": "type_assertion",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -1609,6 +1657,10 @@
             "named": true
           },
           {
+            "type": "type_assertion",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -1676,6 +1728,10 @@
           },
           {
             "type": "table_constructor",
+            "named": true
+          },
+          {
+            "type": "type_assertion",
             "named": true
           },
           {
@@ -1992,6 +2048,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "type_declaration",
           "named": true
         },
@@ -2068,6 +2128,10 @@
         },
         {
           "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "type_assertion",
           "named": true
         },
         {
@@ -2225,6 +2289,113 @@
         },
         {
           "type": "type_union",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_assertion",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "ellipse",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "left_paren",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "right_paren",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "type_array",
+          "named": true
+        },
+        {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
+          "type": "type_callback",
+          "named": true
+        },
+        {
+          "type": "type_generic",
+          "named": true
+        },
+        {
+          "type": "type_intersection",
+          "named": true
+        },
+        {
+          "type": "type_module",
+          "named": true
+        },
+        {
+          "type": "type_optional",
+          "named": true
+        },
+        {
+          "type": "type_parentheses",
+          "named": true
+        },
+        {
+          "type": "type_table",
+          "named": true
+        },
+        {
+          "type": "type_typeof",
+          "named": true
+        },
+        {
+          "type": "type_union",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
           "named": true
         }
       ]
@@ -2910,6 +3081,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         }
@@ -3083,6 +3258,10 @@
           "named": true
         },
         {
+          "type": "type_assertion",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
         }
@@ -3158,6 +3337,10 @@
             "named": true
           },
           {
+            "type": "type_assertion",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -3229,6 +3412,10 @@
         },
         {
           "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "type_assertion",
           "named": true
         },
         {
@@ -3352,6 +3539,10 @@
         },
         {
           "type": "table_constructor",
+          "named": true
+        },
+        {
+          "type": "type_assertion",
           "named": true
         },
         {
