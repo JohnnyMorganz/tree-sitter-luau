@@ -4,3 +4,5 @@ node_modules/
 /parser.lib
 /parser.obj
 /scanner.obj
+
+/build
