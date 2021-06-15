@@ -90,7 +90,7 @@ end
     (then_token)
     (local_assignment
       (local_token)
-      (identifier)
+      (variable_declarator (identifier))
       (boolean))
     (continue_statement)
     (end_token)))

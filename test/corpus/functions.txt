@@ -29,7 +29,9 @@ end
     (function_token)
     (function_name (identifier))
     (left_paren)
-    (parameter_list (identifier) (identifier))
+    (parameter_list 
+      (parameter (identifier))
+      (parameter (identifier)))
     (right_paren)
     (end_token)))
 
@@ -104,7 +106,9 @@ local function baz(a, b, ...) end
     (function_token)
     (identifier)
     (left_paren)
-    (parameter_list (identifier) (identifier))
+    (parameter_list
+      (parameter (identifier))
+      (parameter (identifier)))
     (right_paren)
     (end_token))
   (local_function_declaration
@@ -112,7 +116,8 @@ local function baz(a, b, ...) end
     (function_token)
     (identifier)
     (left_paren)
-    (parameter_list (ellipse))
+    (parameter_list
+      (parameter (ellipse)))
     (right_paren)
     (end_token))
   (local_function_declaration
@@ -120,6 +125,9 @@ local function baz(a, b, ...) end
     (function_token)
     (identifier)
     (left_paren)
-    (parameter_list (identifier) (identifier) (ellipse))
+    (parameter_list
+      (parameter (identifier))
+      (parameter (identifier))
+      (parameter (ellipse)))
     (right_paren)
     (end_token)))
