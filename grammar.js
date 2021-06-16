@@ -155,8 +155,8 @@ module.exports = grammar({
     function_declaration: ($) =>
       seq(
         alias("function", $.function_token),
-        $.function_name,
-        optional($.generics_declaration),
+        field("name", $.function_name),
+        field("generics", optional($.generics_declaration)),
         $._function_body
       ),
 
@@ -403,8 +403,8 @@ module.exports = grammar({
 
     type_assertion: ($) =>
       prec.left(PREC.TYPE_ASSERTION, seq($._expression, "::", $.type_info)),
-    type_specifier: ($) => seq(":", $.type_info),
-    return_type_specifier: ($) => seq(":", $.return_type),
+    type_specifier: ($) => seq(":", field("type", $.type_info)),
+    return_type_specifier: ($) => seq(":", field("type", $.return_type)),
 
     type_info: ($) =>
       choice(
